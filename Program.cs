@@ -12,12 +12,13 @@
             bool isGameOver = false;
             while (!isGameOver)
             {
+
+                PrintBoard(boardValues);
+
                 if(currentPlayer == "x")
                     currentPlayer = "o";
                 else
                     currentPlayer = "x";
-
-                PrintBoard(boardValues);
 
                 boardValues = GetPlayerMove(boardValues, currentPlayer);
 
@@ -61,8 +62,18 @@
             Console.WriteLine($"Player '{currentPlayer}', please enter a number between 1 and 9");
             string playerMove = Console.ReadLine();
             int playerMoveInt = int.Parse(playerMove);
-            boardValues[playerMoveInt - 1] = currentPlayer;
-            return boardValues;
+
+            if (boardValues[playerMoveInt - 1] == "x" || boardValues[playerMoveInt - 1] == "o")
+            {
+                Console.WriteLine("That space is already taken. Please try again.");
+                GetPlayerMove(boardValues, currentPlayer);
+                return boardValues;
+            }
+            else
+            {
+                boardValues[playerMoveInt - 1] = currentPlayer;
+                return boardValues;
+            }
         }   
 
         static bool IsGameOver(List<string> boardValues, List<List<string>> winningCombos)
