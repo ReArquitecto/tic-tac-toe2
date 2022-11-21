@@ -76,7 +76,7 @@
             }
         }   
 
-        static bool doOver(List<string> boardValues, List<List<string>> winningCombos)
+        static bool IsGameOver(List<string> boardValues, List<List<string>> winningCombos)
         {
             bool isGameOver = false;
             foreach (List<string> combo in winningCombos)
