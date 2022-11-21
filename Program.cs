@@ -34,18 +34,13 @@
                 List<List<string>> winningCombos = new List<List<string>>{rowOne, rowTwo, rowThree, columnOne, columnTwo, columnThree, diagonalOne, diagonalTwo};
 
                 isGameOver = IsGameOver(boardValues, winningCombos);
-                
             }
 
-            if (currentPlayer == "x")
-            {
-                Console.WriteLine("Player 'x' wins!");
-            }
+            bool isTie = IsTie(boardValues);
+            if(isTie)
+                Console.WriteLine("It's a tie!");
             else
-            {
-                Console.WriteLine("Player 'o' wins!");
-            }
-
+                Console.WriteLine($"Player {currentPlayer} wins!");
         }
 
         static void PrintBoard(List<string> boardValues)
@@ -92,10 +87,18 @@
             if (!boardValues.Contains("1") && !boardValues.Contains("2") && !boardValues.Contains("3") && !boardValues.Contains("4") && !boardValues.Contains("5") && !boardValues.Contains("6") && !boardValues.Contains("7") && !boardValues.Contains("8") && !boardValues.Contains("9"))
             {
                 isGameOver = true;
-                PrintBoard(boardValues);
-
             }
             return isGameOver;
+        }
+        static bool IsTie(List<string> boardValues)
+        {
+            bool isTie = false;
+            if (!boardValues.Contains("1") && !boardValues.Contains("2") && !boardValues.Contains("3") && !boardValues.Contains("4") && !boardValues.Contains("5") && !boardValues.Contains("6") && !boardValues.Contains("7") && !boardValues.Contains("8") && !boardValues.Contains("9"))
+            {
+                isTie = true;
+                PrintBoard(boardValues);
+            }
+            return isTie;
         }
     }
 }
